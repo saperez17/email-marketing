@@ -1,8 +1,9 @@
+require('dotenv').config()
 const express = require("express")
 const app = express()
 const read = require("read-css")
 const https = require("https")
-require('dotenv').config()
+
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
@@ -41,9 +42,11 @@ app.post("/", function(req, res){
     var url = "https://us1.api.mailchimp.com/3.0/lists/9c7b824019";
     var options = {
         method: "POST",
-        auth: "santiagobn1:"+process.env.API_KEY
+        auth: `santiagobn1:${process.env.API_KEY}`
     }
+    // console.log()
     var request = https.request(url, options, function(response){
+        // console.log(response.statusCode)
         if (response.statusCode==200){
             // response.on("data", function(data){
             //     console.log(JSON.parse(data));
@@ -59,9 +62,9 @@ app.post("/", function(req, res){
 
 });
 
-app.listen("3000", function(){
-    console.log("Server fired up");  
-})
+// app.listen("3000", function(){
+//     console.log("Server fired up");  
+// })
 
 // For Heroku deployment
 app.listen(process.env.PORT || 3000, function(){
