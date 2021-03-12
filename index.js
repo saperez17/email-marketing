@@ -41,7 +41,7 @@ app.post("/", function(req, res){
     var url = "https://us1.api.mailchimp.com/3.0/lists/9c7b824019";
     var options = {
         method: "POST",
-        auth: "santiagobn1:"+process.env.API_KEY;
+        auth: "santiagobn1:"+process.env.API_KEY
     }
     var request = https.request(url, options, function(response){
         if (response.statusCode==200){
